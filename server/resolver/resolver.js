@@ -11,8 +11,7 @@ const resolvers = {
         district: async (parent, { province_code }, { mongoDataMethods }) =>
             await mongoDataMethods.getDistrictByCode(province_code),
 
-        wards: async (parent, args, { mongoDataMethods }) =>
-            await mongoDataMethods.getAllWards(),
+        wards: async (parent, args, { mongoDataMethods }) => await mongoDataMethods.getAllWards(),
         ward: async (parent, { district_code }, { mongoDataMethods }) =>
             await mongoDataMethods.getWardByCode(district_code),
 
@@ -40,6 +39,11 @@ const resolvers = {
             await mongoDataMethods.getWardByCode(code),
     },
 
+    Todo: {
+        team: async ({ team }, args, { mongoDataMethods }) =>
+            await mongoDataMethods.getProfileByListId(team),
+    },
+
     // Todo: {
     //     todos: async ({ id }, args, { mongoDataMethods }) =>
     //         await mongoDataMethods.getTodosByUser(id),
@@ -60,6 +64,8 @@ const resolvers = {
             await mongoDataMethods.createTodo(args),
         editTodo: async (parent, args, { mongoDataMethods }) =>
             await mongoDataMethods.editTodo(args),
+        deleteTodo: async (parent, { id }, { mongoDataMethods }) =>
+            await mongoDataMethods.deleteTodo(id),
     },
 };
 

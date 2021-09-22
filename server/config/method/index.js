@@ -10,8 +10,7 @@ const mongoDataMethods = {
     getProvinceByCode: async (code) => await Province.find({ code }),
 
     getAllDistricts: async () => await District.find(),
-    getDistrictByCode: async (province_code) =>
-        await District.find({ province_code }),
+    getDistrictByCode: async (province_code) => await District.find({ province_code }),
 
     getOneDistrict: async (code) => await District.findOne({ code }),
 
@@ -20,6 +19,13 @@ const mongoDataMethods = {
 
     getAllProfile: async () => await Profile.find(),
     getProfileById: async (id) => await Profile.findById(id),
+    getProfileByListId: async (team) =>
+        Promise.all(team.map(async (member) => await Profile.findOne({ id: member })))
+            .then((data) => {
+                console.log('data', data);
+                return data;
+            })
+            .catch((error) => [error]),
 
     getTodosByUser: async (id) => {
         const todoAll = await Todo.find();
@@ -54,6 +60,7 @@ const mongoDataMethods = {
         await Todo.findByIdAndUpdate(args.id, args);
         return Todo(args);
     },
+    deleteTodo: async (id) => await Todo.findByIdAndDelete(id),
 };
 
 export default mongoDataMethods;

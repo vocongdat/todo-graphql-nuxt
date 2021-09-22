@@ -46,7 +46,7 @@ const typeDefs = gql`
         id: ID!
         title: String
         content: [String]
-        team: [ID]
+        team: [Profile]
         status: String
         projectId: String
     }
@@ -97,7 +97,7 @@ const typeDefs = gql`
             content: [String]
             team: [String]
             status: String
-            projectID: String
+            projectId: String
         ): Todo
 
         editTodo(
@@ -106,8 +106,10 @@ const typeDefs = gql`
             content: [String]
             team: [String]
             status: String
-            projectID: String
+            projectId: String
         ): Todo
+
+        deleteTodo(id: ID!): Todo
     }
 `;
 
