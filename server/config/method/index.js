@@ -27,15 +27,7 @@ const mongoDataMethods = {
             })
             .catch((error) => [error]),
 
-    getTodosByUser: async (id) => {
-        const todoAll = await Todo.find();
-        const todoList = todoAll.filter((todo) => {
-            if (todo.team.includes(id)) {
-                return todo;
-            }
-        });
-        return todoList;
-    },
+    getTodosById: async (id) => await Todo.findById(id),
 
     getTodosByProject: async (projectId) => await Todo.find({ projectId }),
 

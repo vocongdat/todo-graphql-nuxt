@@ -65,7 +65,7 @@ const typeDefs = gql`
         profiles: [Profile]
         profile(id: ID!): Profile
 
-        todos(id: ID!): [Todo]
+        todo(id: ID!): Todo
 
         todoByProject(projectId: ID!): [Todo]
     }

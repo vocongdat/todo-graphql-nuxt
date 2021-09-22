@@ -20,8 +20,8 @@ const resolvers = {
         profile: async (parent, { id }, { mongoDataMethods }) =>
             await mongoDataMethods.getProfileById(id),
 
-        todos: async (parent, { id }, { mongoDataMethods }) =>
-            await mongoDataMethods.getTodosByUser(id),
+        todo: async (parent, { id }, { mongoDataMethods }) =>
+            await mongoDataMethods.getTodosById(id),
 
         todoByProject: async (parent, { projectId }, { mongoDataMethods }) =>
             await mongoDataMethods.getTodosByProject(projectId),
